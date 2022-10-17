@@ -12,7 +12,7 @@ const dispatch = useDispatch();
 const {activeSong, isPlaying, genreListId} = useSelector((state)=>state.player);
 
 const { data, isFetching, error } = useGetSongsByGenreQuery(genreListId || 'POP');
-console.log(data)
+/* console.log(data) */
 
 
 
