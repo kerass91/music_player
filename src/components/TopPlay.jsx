@@ -15,19 +15,19 @@ import { TopCharts } from "../pages";
 
 
 const TopChartCard = ({song, i, isPlaying, activeSong, handlePauseClick, handlePlayClick }) => (
-  <div className="w-full flex flex-row items-center hover:bg-[#111111] py-2 p-4 rounded-lg cursor-pointer mb-2">
-    <h3 className="font-bold text-base text-white mb-3"
-    >{i+ 1}.</h3>
-    <div className="flex-1 flex flex-row justify-between items-center">
-      <img className="w-20 h-20 rounded-lg" src={song?.images?.coverart} alt="image"/>
+  <div className="w-full flex flex-row items-center hover:bg-[#3d3d3d25] py-[2px] p-4 rounded-lg cursor-pointer mb-2">
+    <h3 className="font-bold text-base text-[#06b5d49c] mb-3"
+    >{i+ 1}. </h3>
+    <div className="flex-1 flex flex-row justify-between items-center ml-2">
+      <img className="w-10 h-10 rounded-lg" src={song?.images?.coverart} alt="image"/>
       <div className="flex-1 flex flex-col justify-center mx-3">
         <Link to={`/song/${song.key}`}>
-          <p className="text-x1 font-bold text-white">
+          <p className="text-sm font-bold text-gray-300">
             {song?.title}
           </p>
         </Link>
         <Link to={`/artists/${song.artists[0].adamid}`}>
-          <p className="text-base font-bold text-gray-300 mt-1">
+          <p className="text-sm font-bold text-gray-400 mt-1">
             {song?.subtitle}
           </p>
         </Link>
@@ -57,6 +57,7 @@ const TopPlay = () => {
   })
 
   const topPlay = data?.slice(0, 5); // use only 5 tracks
+  const topPlayArt = data?.slice(0, 10); 
 
   const handlePauseClick = () => {
     dispatch(playPause(false));
@@ -70,11 +71,11 @@ const TopPlay = () => {
 
   return (
     <div ref={divRef} className='xl:ml-6 ml-0 xl:mb-0 mb-6 flex-1 xl:max-w-[500px] max-w-full flex flex-col '>
-      <div className="w-full flex flex-col" >
+      <div className="w-full flex flex-col">
         <div className="flex flex-row justify-between items-center">
-          <h2 className="text-white font-bold">
-            Top Charts
-          </h2>
+          <div className="text-[#06B6D4] font-bold">
+            Top Charts <div>...</div>
+          </div>
             <Link to='/top-charts'>
               <p className="text-gray-600 text-base cursor-pointer">
                 See more
@@ -97,7 +98,7 @@ const TopPlay = () => {
 
       <div className="w-full flex flex-col mt-8">
         <div className="flex flex-row justify-between items-center">
-          <h2 className="text-white font-bold">
+          <h2 className="text-[#06B6D4] font-bold">
             Top Artists
           </h2>
             <Link to='/top-artists'>
@@ -115,11 +116,11 @@ const TopPlay = () => {
         modules={[FreeMode]}
         className='mt-4'
         >
-          {topPlay?.map((song, i) => (
+          {topPlayArt?.map((song, i) => (
             <SwiperSlide
             key={song?.key}
-            style={{width: '25%', height: 'auto'}}
-            className='shadow-lg rounded-full animate-slideright'
+            style={{width: '15%', height: 'auto'}}
+            className='shadow-lg rounded-full animate-slideright '
             >
               <Link to={`/artists/${song?.artists[0].adamid}`}>
                 <img src={song?.images.background} alt="artist_logo"

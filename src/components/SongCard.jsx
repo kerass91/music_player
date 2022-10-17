@@ -18,8 +18,8 @@ const handlePlayClick  =() =>{
 
 }
   return (
-  <div className="flex flex-col w-[250px] p-4 bg-white/5 bg-opacity-80 backdrop-blur-sm animate-slideup rounded-lg cursor-pointer" >
-    <div className="relative w-full h-56 group">
+  <div className="flex flex-col w-[150px] p-4 bg-white/5 bg-opacity-80 backdrop-blur-sm animate-slideup rounded-lg cursor-pointer" >
+    <div className="relative w-full h-25 group">
       <div className={`absolute inset-0  justify-center items-center bg-black bg-opacity-80 group-hover:flex ${activeSong?.title === song.title ? 'flex bg-black bg-opacity-90' : 'hidden'} `}>
         <PlayPause
         isPlaying= {isPlaying}
@@ -29,15 +29,15 @@ const handlePlayClick  =() =>{
         handlePlay={handlePlayClick}
         />
       </div>
-      <img alt="song_img" src={song.images?.coverart}/>
+      <img alt="song_img" src={song.images?.coverart} className='rounded-[10px]'/>
     </div>
     <div className="mt-4 flex flex-col">
-      <p className="font-semibold text-lg text-white truncate">
+      <p className="font-semibold text-base text-[#06b5d4c9] truncate">
         <Link to={`/songs/${song?.key}`}>
         {song.title}
         </Link>
       </p>
-      <p className="text-sm truncate text-gray-300 mt-1">
+      <p className="text-sm truncate text-gray-400 mt-1">
         <Link to={song.artists? `/artists/${song?.artists[0]?.adamid}`: '/top-artists'}>
         {song.subtitle}
         </Link>
