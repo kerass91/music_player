@@ -1,8 +1,12 @@
-import { useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import {Swiper, SwiperSlide} from "swiper/react";
 import { FreeMode } from "swiper";
+
+
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 
 import PlayPause from "./PlayPause";
 import { playPause, setActiveSong } from "../redux/features/playerSlice";
@@ -15,7 +19,7 @@ import { TopCharts } from "../pages";
 
 
 const TopChartCard = ({song, i, isPlaying, activeSong, handlePauseClick, handlePlayClick }) => (
-  <div className="w-full flex flex-row items-center hover:bg-[#3d3d3d25] py-[2px] p-4 rounded-lg cursor-pointer mb-2">
+  <div className="w-full flex flex-row items-center hover: py-[2px] p-4 rounded-lg cursor-pointer mb-2">
     <h3 className="font-bold text-base text-[#06b5d49c] mb-3"
     >{i+ 1}. </h3>
     <div className="flex-1 flex flex-row justify-between items-center ml-2">
@@ -46,6 +50,7 @@ const TopChartCard = ({song, i, isPlaying, activeSong, handlePauseClick, handleP
 const TopPlay = () => {
   const dispatch = useDispatch();
   const {activeSong, isPlaying} = useSelector((state) => state.player);
+  const [showChatr, setShowChart] = useState('false')
 
   const {data, isFetching, error} = useGetTopChartQuery();
   const divRef = useRef(null);
@@ -74,7 +79,10 @@ const TopPlay = () => {
       <div className="w-full flex flex-col">
         <div className="flex flex-row justify-between items-center">
           <div className="text-[#06B6D4] font-bold">
-            Top Charts <div>...</div>
+            Top Charts  
+            <button
+            onClick={()=>{setShowChart(!showChatr)}}
+            >{showChatr? <ExpandLessIcon/>:<ExpandMoreIcon/> }</button>
           </div>
             <Link to='/top-charts'>
               <p className="text-gray-600 text-base cursor-pointer">
@@ -83,7 +91,8 @@ const TopPlay = () => {
             </Link>
         </div>
         <div className="mt-4 flex flex-col gap-1">
-          {topPlay?.map((song, i) => (
+          {!showChatr? null :           
+          topPlay?.map((song, i) => (
             <TopChartCard
             key={song.key}
             song={song}
@@ -94,6 +103,17 @@ const TopPlay = () => {
             handlePlayClick={()=> handlePlayClick(song, i)}
             />
           ))}
+{/*           {topPlay?.map((song, i) => (
+            <TopChartCard
+            key={song.key}
+            song={song}
+            i={i}
+            isPlaying={isPlaying}
+            activeSong={activeSong}
+            handlePauseClick={handlePauseClick}
+            handlePlayClick={()=> handlePlayClick(song, i)}
+            />
+          ))} */}
         </div>
 
       <div className="w-full flex flex-col mt-8">

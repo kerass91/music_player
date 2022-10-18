@@ -24,6 +24,17 @@ const NavLinks = ({handleClick}) => (
 const Sidebar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+const sidebar = document.getElementById('open')
+
+
+document.onclick = (e) => {
+/*   console.log(e.target.id)
+  console.log(e.target.tagName) */
+  if (e.target.id === !sidebar || e.target.tagName !== 'path') {
+    setMobileMenuOpen(false)
+  }
+}
+
 
   return (
     <>
@@ -37,11 +48,13 @@ const Sidebar = () => {
         <RiCloseLine className="w-6 h-6 text-white mr-2"
         onClick={() => setMobileMenuOpen(false)}
         />
-      ): <HiOutlineMenu className="w-6 h-6 text-white mr-2" 
+      ): <HiOutlineMenu className="w-6 h-6 text-white mr-2"
+      id="open"
       onClick={() => setMobileMenuOpen(true)}
       />}
+
     </div>
-    <div className={`absolute top-0 h-screen w-2/3 bg-gradient-to-tl from-white/10 to-[#111111] backdrop-blur-lg z-10 p-6 md:hidden smooth-transition ${mobileMenuOpen? 'left-0': '-left-full'}`}>
+    <div className={`absolute top-0 h-screen w-[45%] bg-gradient-to-tl from-white/10 to-[#111111] backdrop-blur-lg z-10 p-6 md:hidden smooth-transition ${mobileMenuOpen? 'left-0': '-left-full'}`}>
             <img src={logo} alt='logo' className="w-full h-14 object-contain"/>
             <NavLinks handleClick={() => setMobileMenuOpen(false)}/>
     </div>

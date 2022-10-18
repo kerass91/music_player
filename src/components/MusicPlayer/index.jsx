@@ -9,7 +9,7 @@ import Track from './Track';
 import VolumeBar from './VolumeBar';
 
 const MusicPlayer = () => {
-  const { activeSong, currentSongs, currentIndex, isActive, isPlaying } = useSelector((state) => state.player);
+  const { activeSong, currentSongs, currentIndex, isActive, isPlaying, setActiveSong } = useSelector((state) => state.player);
   const [duration, setDuration] = useState(0);
   const [seekTime, setSeekTime] = useState(0);
   const [appTime, setAppTime] = useState(0);
@@ -52,6 +52,13 @@ const MusicPlayer = () => {
     }
   };
 
+  const handleStopSong = () => {
+    dispatch(playPause(false));
+    dispatch(setActiveSong(false))
+    
+
+  }
+
   return (
     <div className="relative sm:px-12 px-8 w-full flex items-center justify-between">
       <Track isPlaying={isPlaying} isActive={isActive} activeSong={activeSong} />
@@ -67,6 +74,7 @@ const MusicPlayer = () => {
           handlePlayPause={handlePlayPause}
           handlePrevSong={handlePrevSong}
           handleNextSong={handleNextSong}
+          handleStopSong={handleStopSong}
         />
         <Seekbar
           value={appTime}

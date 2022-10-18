@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import PlayPause from "./PlayPause";
 import { playPause, setActiveSong } from "../redux/features/playerSlice";
+import { BsHeart } from 'react-icons/bs';
 
 
 const SongCard = ({song, isPlaying, activeSong, data, i}) => {
@@ -29,6 +30,11 @@ const handlePlayClick  =() =>{
         handlePlay={handlePlayClick}
         />
       </div>
+      <button className='absolute top-[4px] right-[4px]'>
+      <BsHeart 
+      size={25} color="#08d6fac9" className="cursor-pointer"      
+      />
+      </button>
       <img alt="song_img" src={song.images?.coverart} className='rounded-[10px]'/>
     </div>
     <div className="mt-4 flex flex-col">
