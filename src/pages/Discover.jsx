@@ -6,6 +6,7 @@ import { useGetTopChartQuery } from '../redux/services/shazamCore';
 import { selectGenreListId } from '../redux/features/playerSlice';
 import { useGetSongsByGenreQuery } from '../redux/services/shazamCore';
 
+
 const Discover = () => {
 
 const dispatch = useDispatch();
@@ -14,7 +15,7 @@ const {activeSong, isPlaying, genreListId} = useSelector((state)=>state.player);
 const { data, isFetching, error } = useGetSongsByGenreQuery(genreListId || 'POP');
 /* console.log(data) */
 
-
+//RiArrowUpSLine
 
 
 if (isFetching) return <Loader title='Loading songs...'/>;
@@ -46,7 +47,9 @@ return (
                 />
             ))}
         </div>
+
     </div>
+    
   );
 };
 

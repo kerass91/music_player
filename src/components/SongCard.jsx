@@ -19,8 +19,8 @@ const handlePlayClick  =() =>{
 
 }
   return (
-  <div className="flex flex-col w-[150px] p-4 bg-white/5 bg-opacity-80 backdrop-blur-sm animate-slideup rounded-lg cursor-pointer" >
-    <div className="relative w-full h-25 group">
+  <div className="flex flex-col w-[140px] p-4 bg-white/5 bg-opacity-80 backdrop-blur-sm animate-slideup rounded-lg cursor-pointer" >
+    <div className="relative w-full h-21 group">
       <div className={`absolute inset-0  justify-center items-center bg-black bg-opacity-80 group-hover:flex ${activeSong?.title === song.title ? 'flex bg-black bg-opacity-90' : 'hidden'} `}>
         <PlayPause
         isPlaying= {isPlaying}

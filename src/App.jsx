@@ -3,22 +3,28 @@ import { Route, Routes } from 'react-router-dom';
 
 import { Searchbar, Sidebar, MusicPlayer, TopPlay } from './components';
 import { ArtistDetails, TopArtists, AroundYou, Discover, Search, SongDetails, TopCharts, Favourite } from './pages';
+import { RiArrowUpSLine } from "react-icons/ri";
+import { RiArrowDownSLine } from "react-icons/ri";
+import { BiArrowToTop } from "react-icons/bi";
+import { useEffect, useRef } from 'react';
+
+
 
 const App = () => {
   const { activeSong } = useSelector((state) => state.player);
 
   return (
     <div className="relative flex">
-      <Sidebar />
+      <Sidebar/>
       <div className="flex-1 flex flex-col bg-gradient-to-br from-black to-[#171717]">
-        <Searchbar />
+        <Searchbar  />
 
-        <div className="px-6 h-[calc(100vh-72px)] overflow-y-scroll hide-scrollbar flex xl:flex-row flex-col-reverse">
+        <div className="relative px-6 h-[calc(100vh-72px)] overflow-y-scroll hide-scrollbar flex xl:flex-row flex-col-reverse">
           <div className="flex-1 h-fit pb-40">
             <Routes>
               <Route path="/" element={<Discover />} />
               <Route path="/top-artists" element={<TopArtists/>} />
-              <Route path="/top-charts" element={<TopCharts/>} />
+              <Route path="/top-charts" element={<TopCharts/>}/>
               <Route path="/around-you" element={<AroundYou/>} />
               {/* <Route path="/favourite" element={<Favourite />} /> */}
               <Route path="/artists/:id" element={<ArtistDetails/>} />
@@ -26,11 +32,27 @@ const App = () => {
               <Route path="/search/:searchTerm" element={<Search />} />
             </Routes>
           </div>
+          <button className='fixed left-[46%] bottom-[1px] opacity-70'>
+          <RiArrowUpSLine
+        size={30} color="#08d6fac9" className="cursor-pointer" 
+        ></RiArrowUpSLine>
+          </button>
+          <button className='fixed opacity-40 right-[8px] bottom-[5px]'         
+          onClick={() => {
+          window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
+        }}>
+          <BiArrowToTop
+        size={35} color="white" className="cursor-pointer opacity-70" 
+        ></BiArrowToTop>
+          </button>
+
           <div className="xl:sticky relative top-0 h-fit">
             <TopPlay />
           </div>
+
         </div>
       </div>
+    
 
       {activeSong?.title && (
         <div className="absolute h-19 bottom-0 left-0 right-0 flex animate-slideup bg-gradient-to-br from-white/10 to-[#1e1e1f] backdrop-blur-lg rounded-t-3xl z-10">
