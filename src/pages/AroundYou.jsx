@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
-
+import { useRef } from 'react';
 import { Error, Loader, SongCard } from "../components";
 import { useGetSongsByCountryQuery } from "../redux/services/shazamCore";
+import { BiArrowToTop } from "react-icons/bi";
+
 
 const AroundYou = () => {
 
@@ -13,8 +15,8 @@ const AroundYou = () => {
     const {activeSong, isPlaying} = useSelector((state) => state.player)
     const {data, isFetching, error} = useGetSongsByCountryQuery(country);
 
- console.log(country)
- console.log(data)
+/*  console.log(country)
+ console.log(data) */
 
     useEffect(()=>{
     axios.get(`https://geo.ipify.org/api/v2/country?apiKey=at_jDvJDH9NmOGjASMcWbLpolhLSNgMC`)
@@ -28,9 +30,15 @@ const AroundYou = () => {
 
     if(error && country) return <Error/>
 
+    const divRef = useRef(null);
+    const scrollTop = () =>{
+    divRef.current.scrollIntoView({
+        behavior: 'smooth'
+      })
+    }
 
     return (
-    <div className="flex flex-col">
+    <div ref={divRef} className="flex flex-col">
         <h2 className="font-bold text-3xl text-gray-500 text-left mt-4 mb-10">
             Around you <span className="font-bold text-[#06B6D4]">{country}</span>
         </h2>
@@ -47,6 +55,12 @@ const AroundYou = () => {
               />  
             )}
         </div>
+        <button className='fixed opacity-40 right-[8px] bottom-[5px]'         
+          onClick={() => scrollTop()}>
+          <BiArrowToTop
+        size={35} color="white" className="cursor-pointer opacity-70" 
+        ></BiArrowToTop>
+          </button>
     </div>
     );
 };

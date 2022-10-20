@@ -2,6 +2,7 @@ import { useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 
 import { Searchbar, Sidebar, MusicPlayer, TopPlay } from './components';
+/* import {LoginCom} from './components/LoginCom' */
 import { ArtistDetails, TopArtists, AroundYou, Discover, Search, SongDetails, TopCharts, Favourite } from './pages';
 import { RiArrowUpSLine } from "react-icons/ri";
 import { RiArrowDownSLine } from "react-icons/ri";
@@ -15,6 +16,7 @@ const App = () => {
 
   return (
     <div className="relative flex">
+{/*       <LoginCom/> */}
       <Sidebar/>
       <div className="flex-1 flex flex-col bg-gradient-to-br from-black to-[#171717]">
         <Searchbar  />
@@ -37,14 +39,7 @@ const App = () => {
         size={30} color="#08d6fac9" className="cursor-pointer" 
         ></RiArrowUpSLine>
           </button>
-          <button className='fixed opacity-40 right-[8px] bottom-[5px]'         
-          onClick={() => {
-          window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
-        }}>
-          <BiArrowToTop
-        size={35} color="white" className="cursor-pointer opacity-70" 
-        ></BiArrowToTop>
-          </button>
+
 
           <div className="xl:sticky relative top-0 h-fit">
             <TopPlay />

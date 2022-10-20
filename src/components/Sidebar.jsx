@@ -16,6 +16,7 @@ const NavLinks = ({handleClick}) => (
         <link.icon className="w-6 h-6 mr-2"/>
         {link.name}
       </NavLink>
+      
     ) )}
   </div>
 );
@@ -41,9 +42,12 @@ document.onclick = (e) => {
     <div className="md:flex hidden flex-col w-[240px] py-10 px-4 bg-[#111111]">
             <img src={logo} alt='logo' className="w-full h-14 object-contain"/>
             <NavLinks/>
+            <button className="mt-[100px] text-cyan-50">
+            Registration
+            </button>
     </div>
 
-    <div className="absolute md:hidden block w-[60px] h-[60px] top-[40px] right-3 ">
+    <div className="absolute md:hidden block w-[60px] h-[60px] top-[20px] right-3 ">
       {mobileMenuOpen ? (
         <RiCloseLine className="w-8 h-8 text-white mr-2"
         onClick={() => setMobileMenuOpen(false)}
@@ -54,10 +58,14 @@ document.onclick = (e) => {
       />}
 
     </div>
-    <div className={`absolute top-[20px] h-screen w-[45%] bg-gradient-to-tl from-white/10 to-[#111111] backdrop-blur-lg z-10 p-6 md:hidden smooth-transition ${mobileMenuOpen? 'left-0': '-left-full'}`}>
+    <div className={`absolute top-[5px] h-screen w-[45%] bg-gradient-to-tl from-white/10 to-[#111111] backdrop-blur-lg z-10 p-6 md:hidden smooth-transition ${mobileMenuOpen? 'left-0': '-left-full'}`}>
             <img src={logo} alt='logo' className="mt-[35px] w-full h-14 object-contain"/>
             <NavLinks handleClick={() => setMobileMenuOpen(false)}/>
+            <button className="mt-[100px] text-cyan-50">
+            Registration
+            </button>
     </div>
+    
     </>
   )
 }
