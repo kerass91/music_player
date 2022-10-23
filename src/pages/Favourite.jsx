@@ -38,12 +38,12 @@ const Favourite = () => {
               />  
             )}
         </div>
-        <button className='fixed opacity-40 right-[8px] bottom-[5px]'         
+{/*         <button className='fixed opacity-40 right-[8px] bottom-[5px]'         
           onClick={() => scrollTop()}>
           <BiArrowToTop
         size={35} color="white" className="cursor-pointer opacity-70" 
         ></BiArrowToTop>
-          </button>
+          </button> */}
     </div>
     );
 };
