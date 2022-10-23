@@ -14,7 +14,9 @@ const AroundYou = () => {
     const [loading, senLoading]= useState(true);
     const {activeSong, isPlaying} = useSelector((state) => state.player)
     const {data, isFetching, error} = useGetSongsByCountryQuery(country);
+    const divRef = useRef(null);
 
+    
 /*  console.log(country)
  console.log(data) */
 
@@ -30,7 +32,7 @@ const AroundYou = () => {
 
     if(error && country) return <Error/>
 
-    const divRef = useRef(null);
+  
     const scrollTop = () =>{
     divRef.current.scrollIntoView({
         behavior: 'smooth'

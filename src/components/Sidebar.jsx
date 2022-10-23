@@ -5,6 +5,7 @@ import { logo } from "../assets";
 import { links } from "../assets/constants";
 import { HiOutlineMenu } from "react-icons/hi";
 
+
 const NavLinks = ({handleClick}) => (
   <div className="mt-10">
     {links.map((link)=>(
@@ -42,10 +43,12 @@ document.onclick = (e) => {
     <div className="md:flex hidden flex-col w-[240px] py-10 px-4 bg-[#111111]">
             <img src={logo} alt='logo' className="w-full h-14 object-contain"/>
             <NavLinks/>
-            <button className="mt-[100px] text-cyan-50">
-            Registration
-            </button>
+            <div className="mt-[150px]">
+            <div>AVATAR</div>
+            <div>EMAIL</div>
+            </div>
     </div>
+
 
     <div className="absolute md:hidden block w-[60px] h-[60px] top-[20px] right-3 ">
       {mobileMenuOpen ? (
@@ -61,11 +64,12 @@ document.onclick = (e) => {
     <div className={`absolute top-[5px] h-screen w-[45%] bg-gradient-to-tl from-white/10 to-[#111111] backdrop-blur-lg z-10 p-6 md:hidden smooth-transition ${mobileMenuOpen? 'left-0': '-left-full'}`}>
             <img src={logo} alt='logo' className="mt-[35px] w-full h-14 object-contain"/>
             <NavLinks handleClick={() => setMobileMenuOpen(false)}/>
-            <button className="mt-[100px] text-cyan-50">
-            Registration
-            </button>
+            <div className="mt-[150px]">
+            <div>AVATAR</div>
+            <div>EMAIL</div>
+            </div>
     </div>
-    
+
     </>
   )
 }

@@ -41,5 +41,5 @@ export const { useGetTopChartQuery,
             useGetArtistDetailsQuery,
             useGetSongsByCountryQuery,
             useGetSongsByGenreQuery,
-            useGetSongsBySearchQuery
+            useGetSongsBySearchQuery, 
         } = shazamCoreApi;

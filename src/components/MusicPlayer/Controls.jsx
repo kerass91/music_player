@@ -13,7 +13,7 @@ const Controls = ({ isPlaying, repeat, setRepeat, shuffle, setShuffle, currentSo
     )}
     {currentSongs?.length && <MdSkipNext size={30} color="#FFF" className="cursor-pointer" onClick={handleNextSong} />}
     <BsShuffle size={25} color={shuffle ? 'red' : 'white'} onClick={() => setShuffle((prev) => !prev)} className="hidden sm:block cursor-pointer" />
-    <BsXCircleFill size={25} color="#FFF" className="cursor-pointer absolute right-[-52px]"
+    <BsXCircleFill size={25} color="#FFF" className="cursor-pointer ml-[10px]"
     onClick={handleStopSong}
     />
   </div>
