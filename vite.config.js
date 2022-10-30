@@ -8,4 +8,7 @@ export default defineConfig({
     https: true,
     host: 'localhost',
 },
+build: {
+  chunkSizeWarningLimit: 1600,
+},
 });

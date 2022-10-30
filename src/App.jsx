@@ -4,8 +4,7 @@ import { Route, Routes } from 'react-router-dom';
 import { Searchbar, Sidebar, MusicPlayer, TopPlay } from './components';
 
 import { ArtistDetails, TopArtists, AroundYou, Discover, Search, SongDetails, TopCharts, Favourite, LoginCom } from './pages';
-import { RiArrowUpSLine } from "react-icons/ri";
-import { RiArrowDownSLine } from "react-icons/ri";
+
 import {useAuth} from "./components/firebase";
 import { addDoc, collection, setDoc } from 'firebase/firestore';
 import { db } from './components/firebase';
@@ -25,15 +24,6 @@ const App = () => {
     console.error("Error adding document: ", e);
   }
 }, [currentUser]);
-
-/*  try {
-  const docRef = addDoc(collection(db, `${currentUser?.uid}`), {});
-  console.log("Document written with ID: ", docRef);
-} catch (e) {
-  console.error("Error adding document: ", e);
-} */
-
-
 
   if (!currentUser) {
     return (
@@ -65,7 +55,7 @@ const App = () => {
               <Route path="/artists/:id" element={<ArtistDetails/>} />
               <Route path="/songs/:songid" element={<SongDetails/>} />
               <Route path="/search/:searchTerm" element={<Search />} />
-              {/* <Route path="/login" element={<LoginCom/>} /> */}
+           
             </Routes>
           </div>
 
