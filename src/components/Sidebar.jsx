@@ -4,6 +4,10 @@ import {RiCloseLine} from "react-icons/ri";
 import { logo } from "../assets";
 import { links } from "../assets/constants";
 import { HiOutlineMenu } from "react-icons/hi";
+import {
+  Box,Typography,Paper,Alert,Button,TextField,Snackbar} from "@mui/material";
+
+  import { singup, useAuth, logout, login, authen, singinGoggle, } from "../components/firebase";
 
 
 const NavLinks = ({handleClick}) => (
@@ -23,15 +27,15 @@ const NavLinks = ({handleClick}) => (
 );
 
 
-const Sidebar = () => {
+const Sidebar = ({currentUserName, currentUserEmail, currentUserAvatar}) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-const sidebar = document.getElementById('open')
+  const sidebar = document.getElementById('open')
+
+
 
 
 document.onclick = (e) => {
-/*   console.log(e.target.id)
-  console.log(e.target.tagName) */
   if (e.target.id === !sidebar || e.target.tagName !== 'path') {
     setMobileMenuOpen(false)
   }
@@ -43,9 +47,29 @@ document.onclick = (e) => {
     <div className="md:flex hidden flex-col w-[240px] py-10 px-4 bg-[#111111]">
             <img src={logo} alt='logo' className="w-full h-14 object-contain"/>
             <NavLinks/>
-            <div className="mt-[150px]">
-            <div>AVATAR</div>
-            <div>EMAIL</div>
+            <div className="flex flex-col mt-[150px] items-center">
+            <div className=" flex h-[100px] mb-2 rounded-[100px] items-center bor">
+            <img alt="avatar" src={currentUserAvatar} 
+            className='rounded-[100%]'
+      />
+            </div>
+            <p
+            className='items-center text-sm font-medium text-gray-600 hover:text-cyan-600'
+            >{currentUserName}</p>
+            <p
+            className='items-center text-sm font-medium text-gray-600 hover:text-cyan-600'
+            >{currentUserEmail}</p>
+            <Button variant="outlined"
+          sx={{
+          boxShadow: 1,
+          borderRadius: 2,
+          mt: 2,
+          maxWidth: 150,
+          color: '#06b5d4c9',
+          border: '1px solid #2B303E',
+          }}
+          onClick={logout}
+         >- Log Out -</Button>          
             </div>
     </div>
 
@@ -64,9 +88,30 @@ document.onclick = (e) => {
     <div className={`absolute top-[5px] h-screen w-[45%] bg-gradient-to-tl from-white/10 to-[#111111] backdrop-blur-lg z-10 p-6 md:hidden smooth-transition ${mobileMenuOpen? 'left-0': '-left-full'}`}>
             <img src={logo} alt='logo' className="mt-[35px] w-full h-14 object-contain"/>
             <NavLinks handleClick={() => setMobileMenuOpen(false)}/>
-            <div className="mt-[150px]">
-            <div>AVATAR</div>
-            <div>EMAIL</div>
+            <div className="flex flex-col mt-[150px] items-center">
+            <div className=" flex h-[100px] mb-2 rounded-[100px]">
+            <img alt="avatar" src={currentUserAvatar} 
+            className='rounded-[100%]'
+      />
+            </div>
+            <p
+            className='items-center text-sm font-medium text-gray-400 hover:text-cyan-600'
+            >{currentUserName}</p>
+            <p
+            className='items-center text-sm font-medium text-gray-400 hover:text-cyan-600'
+            >{currentUserEmail}</p>
+            <Button variant="outlined"
+          sx={{
+          boxShadow: 1,
+          borderRadius: 2,
+          mt: 2,
+          p: 0,
+          maxWidth: 150,
+          color: '#06b5d4c9',
+          border: '1px solid #2B303E',
+          }}
+          onClick={logout}
+         >- Log Out -</Button>
             </div>
     </div>
 

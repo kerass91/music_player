@@ -23,7 +23,10 @@ const firebaseConfig = {
  export const singinGoggle = () => {
     signInWithPopup(authen, provider)
     .then((result) => {
-      console.log(result)
+      
+       console.log(result)
+/*       console.log(result.user.displayName)
+      console.log(result.user.email)  */
     })
     .catch((err) => {
       console.log(err)
@@ -45,6 +48,15 @@ const firebaseConfig = {
 
 export const db = getFirestore(app);
 
+
+/* export const createFavourite =(email, passwoed,)=> {
+  
+ const docRef= doc(db, 'Favorite')
+  addDoc(collection(docRef, roomId, result.user.uid)
+  
+
+}) */
+
 // Custom hook
 
 export const useAuth = () => {
@@ -55,6 +67,24 @@ export const useAuth = () => {
     return unsub;
   }, []);
 
+ /*  useEffect(() => {
+    effect
+    return () => {
+      cleanup
+    };
+  }, []);
+ */
+
+/* useEffect(() => {
+  try {
+    const docRef = addDoc(collection(db, `${currentUser?.uid}`), {});
+    console.log("Document written with ID: ", docRef);
+  } catch (e) {
+    console.error("Error adding document: ", e);
+  }
+}, []); */
+
   return currentUser;
 } 
+
 

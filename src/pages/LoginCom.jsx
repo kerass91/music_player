@@ -1,40 +1,58 @@
-/* import axios from "axios";
-import "./LoginPage.css";
+
+/* import { useNavigate } from "react-router-dom"; */
+/* import { AuthContext } from "../../contexts/AuthContext"; */
+/* import { tempUrl } from "../../contexts/ContextProvider"; */
+
 import { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../../contexts/AuthContext";
-import { tempUrl } from "../../contexts/ContextProvider";
 import GoogleIcon from "@mui/icons-material/Google";
-import {Box,Typography,Paper,Alert, Button,TextField,Snackbar} from "@mui/material";
-import { useForm } from "react-hook-form"; */
 
+import { singup, useAuth, logout, login, authen, singinGoggle, } from "../components/firebase";
 import { GoogleLogin, GoogleLogout } from "react-google-login";
-
-
 
 import {
   Box,Typography,Paper,Alert,Button,TextField,Snackbar} from "@mui/material";
-/* import GoogleIcon from "@mui/icons-material/Google"; */
+
 
 
 
 const LoginCom = () => {
-/*   const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+  
+  /* сonst [name, setName] = useState(null); */
+  const [email, setEmail] = useState(null);
   const [url, setUrl] = useState("");
   const [loginStatus, setLoginStatus] = useState(false);
   
-  const emailRef = useRef();
-  const passwordRef = useRef();
+
+  /* const emailRef = useRef(); */
+/*   const passwordRef = useRef(); */
   const [loading, setLoading] = useState(false);
-  const currentUser = useAuth(); */
-/* 
+  /* const currentUser = useAuth();  */
+
+
   
-  const logout1 = () => {
-    console.log("logout");
-    setLoginStatus(false);
+
+  const responseGoogle = (res) => {
+  
+    setName(res.profileObj.name);
+    setEmail(res.profileObj.email);
+    setUrl(res.profileObj.imageUrl);
+    setLoginStatus(true); 
   };
 
+
+  /* const logout1 = () => {
+    console.log("logout");
+    setLoginStatus(false);
+  }; */
+
+/*   const responseGoogle = (res) => {
+    console.log(res);
+
+    setEmail(res.profileObj.email);
+    setUrl(res.profileObj.imageUrl);
+    setLoginStatus(true);
+  }; */
+/* 
   const handleSingup = async() => {
     setLoading(true);
     try{
@@ -45,9 +63,9 @@ const LoginCom = () => {
       
     setLoading(false);
     
-  }
+  } */
 
-  const handleLogin = async() => {
+/*   const handleLogin = async() => {
     setLoading(true);
     try {
       await login(emailRef.current.value, passwordRef.current.value);
@@ -56,8 +74,8 @@ const LoginCom = () => {
     }
     setLoading(false);
     
-  }
-
+  } */
+/* 
 const handleLogout = async() => {
   setLoading(true);
   try {
@@ -69,13 +87,6 @@ const handleLogout = async() => {
   
 }  */
 
-const responseGoogle = (res) => {
-  console.log(res);
-  setName(res.profileObj.name);
-  setEmail(res.profileObj.email);
-  setUrl(res.profileObj.imageUrl);
-  setLoginStatus(true);
-};
 
   return (
   <div className="flex justify-center h-[300px] w-[300px] mt-[50px] items-center">
@@ -87,6 +98,7 @@ const responseGoogle = (res) => {
             className="font-bold text-center text-[#06b5d4c9]"
             > - SING UP - </h1>
           <TextField id="email" label="Email" type="standard"
+         
           sx={{
             borderRadius: 2,
             border: '1px #06b5d4c9',
@@ -96,8 +108,10 @@ const responseGoogle = (res) => {
             outline: '#06b5d4c9',
             background:'#2B303E',
             }}
+            /* ref={emailRef} */
           />
          <TextField id="password" label="Password" type="password" 
+          
           sx={{
           borderRadius: 2,
           margin: 1,
@@ -107,6 +121,7 @@ const responseGoogle = (res) => {
           outline: '#06b5d4c9'
         
           }}
+          /* ref={passwordRef} */
          />
           <Button variant="outlined"
          sx={{
@@ -117,6 +132,7 @@ const responseGoogle = (res) => {
           color: '#06b5d4c9',
           border: '1px solid #2B303E',
         }}
+        /* onClick={handleLogin} */
          >- Login -</Button>
          <Button variant="outlined"
           sx={{
@@ -128,15 +144,10 @@ const responseGoogle = (res) => {
           color: '#06b5d4c9',
           border: '1px solid #2B303E',
           }}
-         >- Sing In -</Button>
-       <GoogleLogin
-          clientId="7205238352-ra6412jde9mau3uoqs5hrnlk5gj18bia.apps.googleusercontent.com"
-          buttonText="Sing in with Google"
-          onSuccess={responseGoogle}
-          onFailure={responseGoogle}
-          cookiePolicy={"single_host_origin"}
-        />
-{/*          <Button variant="outlined"
+          /* onClick={handleSingup} */
+         >- Registration -</Button>
+
+         <Button variant="outlined"
           sx={{
           boxShadow: 1,
           borderRadius: 2,
@@ -146,9 +157,11 @@ const responseGoogle = (res) => {
           color: '#06b5d4c9',
           border: '1px solid #2B303E',
           }}
+          onClick ={singinGoggle}
+          
           >
           <p>- Sing In with GOGGLE -</p>
-          </Button> */}
+          </Button>
   </div>
   </div>
   </div>
