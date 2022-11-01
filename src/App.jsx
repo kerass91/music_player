@@ -3,7 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 
 import { Searchbar, Sidebar, MusicPlayer, TopPlay } from './components';
 
-import { ArtistDetails, TopArtists, AroundYou, Discover, Search, SongDetails, TopCharts, Favourite, LoginCom } from './pages';
+import { ArtistDetails, TopArtists, AroundYou, Discover, Search, SongDetails, TopCharts, Favourite, SignUp } from './pages';
 
 import {useAuth} from "./components/firebase";
 import { addDoc, collection, setDoc } from 'firebase/firestore';
@@ -15,7 +15,7 @@ const App = () => {
   const { activeSong } = useSelector((state) => state.player);
 
  const currentUser = useAuth();
-
+/* 
  useEffect(() => {
   try {
     const docRef = addDoc(collection(db, `${currentUser?.uid}`), {});
@@ -23,12 +23,13 @@ const App = () => {
   } catch (e) {
     console.error("Error adding document: ", e);
   }
-}, []);
+}, []); */
 
   if (!currentUser) {
     return (
     <div className='flex h-[100vh] flex-col justify-center items-center  bg-gradient-to-br from-black to-[#171717]'>
-      <LoginCom/>
+       <SignUp/>
+
     </div>
     )
   } 
@@ -55,7 +56,6 @@ const App = () => {
               <Route path="/artists/:id" element={<ArtistDetails/>} />
               <Route path="/songs/:songid" element={<SongDetails/>} />
               <Route path="/search/:searchTerm" element={<Search />} />
-              {/* <Route path="/login" element={<LoginCom/>} /> */}
             </Routes>
           </div>
 

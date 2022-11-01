@@ -23,10 +23,7 @@ const firebaseConfig = {
  export const singinGoggle = () => {
     signInWithPopup(authen, provider)
     .then((result) => {
-      
        console.log(result)
-/*       console.log(result.user.displayName)
-      console.log(result.user.email)  */
     })
     .catch((err) => {
       console.log(err)

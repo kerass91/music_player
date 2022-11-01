@@ -4,11 +4,8 @@ import {RiCloseLine} from "react-icons/ri";
 import { logo } from "../assets";
 import { links } from "../assets/constants";
 import { HiOutlineMenu } from "react-icons/hi";
-import {
-  Box,Typography,Paper,Alert,Button,TextField,Snackbar} from "@mui/material";
-
-  import { singup, useAuth, logout, login, authen, singinGoggle, } from "../components/firebase";
-
+import {Button} from "@mui/material";
+import {logout } from "../components/firebase";
 
 const NavLinks = ({handleClick}) => (
   <div className="mt-10">
@@ -32,7 +29,7 @@ const Sidebar = ({currentUserName, currentUserEmail, currentUserAvatar}) => {
 
   const sidebar = document.getElementById('open')
 
-
+const picture = 'https://klike.net/uploads/posts/2022-05/1651819344_5.jpg'
 
 
 document.onclick = (e) => {
@@ -47,10 +44,10 @@ document.onclick = (e) => {
     <div className="md:flex hidden flex-col w-[240px] py-10 px-4 bg-[#111111]">
             <img src={logo} alt='logo' className="w-full h-14 object-contain"/>
             <NavLinks/>
-            <div className="flex flex-col mt-[150px] items-center">
+            <div className="flex flex-col mt-[200px] items-center">
             <div className=" flex h-[100px] mb-2 rounded-[100px] items-center bor">
-            <img alt="avatar" src={currentUserAvatar} 
-            className='rounded-[100%]'
+            <img alt='pict' src={currentUserAvatar || picture} 
+            className='rounded-[100%] w-[96px] h-[96px]'
       />
             </div>
             <p
@@ -88,18 +85,20 @@ document.onclick = (e) => {
     <div className={`absolute top-[5px] h-screen w-[45%] bg-gradient-to-tl from-white/10 to-[#111111] backdrop-blur-lg z-10 p-6 md:hidden smooth-transition ${mobileMenuOpen? 'left-0': '-left-full'}`}>
             <img src={logo} alt='logo' className="mt-[35px] w-full h-14 object-contain"/>
             <NavLinks handleClick={() => setMobileMenuOpen(false)}/>
-            <div className="flex flex-col mt-[150px] items-center">
+            <div className="flex flex-col mt-[120px] items-center">
             <div className=" flex h-[100px] mb-2 rounded-[100px]">
             <img alt="avatar" src={currentUserAvatar} 
             className='rounded-[100%]'
       />
             </div>
-            <p
-            className='items-center text-sm font-medium text-gray-400 hover:text-cyan-600'
-            >{currentUserName}</p>
-            <p
-            className='items-center text-sm font-medium text-gray-400 hover:text-cyan-600'
-            >{currentUserEmail}</p>
+            <div
+            className='text-center w-full text-[15px] overflow-auto font-medium text-gray-400 hover:text-cyan-600'
+            >
+              {currentUserName}
+              </div>
+            <div
+            className='text-center w-[100%] text-xs overflow-scroll cont font-medium text-gray-400 hover:text-cyan-600'
+            > {currentUserEmail}</div>
             <Button variant="outlined"
           sx={{
           boxShadow: 1,

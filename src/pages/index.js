@@ -6,7 +6,7 @@ import Search from './Search';
 import TopCharts from './TopCharts';
 import AroundYou from './AroundYou';
 import Favourite from './Favourite';
-import LoginCom from './LoginCom';
+import SignUp from './SignUp';
 
 
 export {
@@ -18,5 +18,5 @@ export {
   TopCharts,
   AroundYou,
   Favourite,
-  LoginCom
+  SignUp
 };

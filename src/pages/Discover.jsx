@@ -32,7 +32,7 @@ if (isFetching) return <Loader title='Loading songs...'/>;
 if (error) return <Error/>
 
 const genreTitle = genres.find(({value})=>value === genreListId)?.title;
-console.log(genres)
+
 
 return (
     <div ref={divRef} className='flex flex-col'>

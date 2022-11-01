@@ -6,11 +6,15 @@ import { playPause, setActiveSong } from "../redux/features/playerSlice";
 import { BsHeart } from 'react-icons/bs';
 
 
-const SongCard = ({song, isPlaying, activeSong, data, i}) => {
+const SongCard = ({song, isPlaying, activeSong, data, i,}) => {
+
+  const [favorite, setFavorite] = useState([])
   const dispatch = useDispatch(() => {
   })
 
-
+  const handleFavorite = (song) => {
+      console.log(song.key)
+    }
 
   const handlePauseClick = () => {
   dispatch(playPause(false));
@@ -36,7 +40,10 @@ const SongCard = ({song, isPlaying, activeSong, data, i}) => {
       <button className='absolute top-[4px] right-[4px]'
       > 
       <BsHeart 
-      size={25} color="#08d6fac9" className="cursor-pointer"      
+      size={25} color="#08d6fac9" className="cursor-pointer"
+      song= {song}
+      key={song.key}
+      onClick={handleFavorite(song)}
       />
       </button>
       <img alt="song_img" src={song.images?.coverart} className='rounded-[10px]'/>
